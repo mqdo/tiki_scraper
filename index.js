@@ -30,50 +30,6 @@ const getWithoutScrollingPage = async (url) => {
   return html;
 };
 
-// const getCoupons = async (url) => {
-//   const browser = await puppeteer.launch({ headless: false, devtools: true });
-//   const page = await browser.newPage();
-//   await page.goto(url);
-//   let coupons = [];
-//   await page.$$eval('.icon-info', (buttons) =>
-//     buttons.forEach(async (button) => {
-//       await button.hover();
-//       const couponCodeEl = await page.waitForSelector(
-//         '.popup-content > div:nth-child(2) > div:nth-child(1) > div:nth-child(2)',
-//         { visible: true }
-//       );
-//       console.log(couponCodeEl);
-//       const couponCode = await couponCodeEl.evaluate(
-//         (couponCode) => couponCode.textContent
-//       );
-//       const couponExpiryEl = await page.waitForSelector(
-//         '.popup-content > div:nth-child(2) > div:nth-child(2) > div:nth-child(2)',
-//         { visible: true }
-//       );
-//       console.log(couponExpiryEl);
-//       const couponExpiry = await couponExpiryEl.evaluate(
-//         (couponExpiry) => couponExpiry.textContent
-//       );
-//       const couponConditionsEl = await page.waitForSelector(
-//         '.popup-content > div:nth-child(2) > div:nth-child(3) > div:nth-child(2)',
-//         { visible: true }
-//       );
-//       console.log(couponConditionsEl);
-//       const couponConditions = await couponConditionsEl.evaluate(
-//         (couponConditions) => couponConditions.textContent
-//       );
-//       await page.waitForSelector('.popup-content', { hidden: true });
-//       coupons.push({
-//         couponCode,
-//         couponExpiry,
-//         couponConditions,
-//       });
-//     })
-//   );
-//   await browser.close();
-//   return coupons;
-// };
-
 async function autoScroll(page) {
   await page.evaluate(async () => {
     await new Promise((resolve) => {
@@ -101,7 +57,6 @@ app.get('/products/:productId', async (req, res) => {
     const url = `https://www.tiki.vn/p/${productId}`;
 
     const html = await getPage(url);
-    // fs.writeFileSync('data.html', html, 'utf8');
     const $ = cheerio.load(html);
 
     const title = $('h1.title').text();
@@ -115,8 +70,6 @@ app.get('/products/:productId', async (req, res) => {
     const contentImage = $('.content > div > div > p > img').attr('src');
     const ratingPoints = $('.review-rating__point').text();
     const ratingTotal = $('.review-rating__total').text().split(' ')[0];
-
-    // console.log(await ratingTotal, await ratingPoints);
 
     let properties = [];
     tableRows.each((index, row) => {
