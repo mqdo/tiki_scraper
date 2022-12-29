@@ -1,8 +1,10 @@
 # TIKI SCRAPER API
 
-This is a simple API for getting information of products in Tiki Trading Vietnam in a simple way.
+This is a simple API for getting information of products in Tiki Trading Vietnam in a simple way. The API is a study case only and will not be using for commercial purposes.
 
-This API includes 5 endpoints:
+Used Technologies: Node.js with Express.js, Cheerio.js and Puppeteer.js
+
+This API consist of 5 endpoints:
 
 ## GET /products/:productId
 
@@ -16,7 +18,7 @@ Response:
 
 - json:
 
-```json
+```JavaScript
 {
   title,
   url,
@@ -25,7 +27,7 @@ Response:
   thumbnails,
   properties,
   description: { content, contentImage },
-  reviews: { ratingPoints, ratingTotal },
+  reviews: { ratingPoints, ratingTotal }
 }
 ```
 
@@ -44,7 +46,7 @@ Response:
 
 - json:
 
-```json
+```JavaScript
 [
   couponLabel,
   [
@@ -53,7 +55,7 @@ Response:
       couponCode,
       couponExpiry,
       couponRate,
-      couponRange,
+      couponRange
     }
   ]
 ]
@@ -77,13 +79,13 @@ Request:
 
 Response:
 
-```json
+```JavaScript
 [
   {
     name,
     url,
     thumbnails,
-    pricing: { price, discount },
+    pricing: { price, discount }
   }
 ]
 ```
@@ -96,7 +98,7 @@ Request: no parameters or queries required
 
 Response:
 
-```json
+```JavaScript
 [
   {
     link,
@@ -125,15 +127,17 @@ Request:
 
 Response:
 
-```json
+```JavaScript
 [
   {
     name,
     url,
     thumbnails,
-    pricing: { price, discount },
+    pricing: { price, discount }
   }
 ]
 ```
 
-Used Technologies: Node.js with Express.js, Cheerio.js and Puppeteer.js
+Example of category: <https://tiki.vn/dien-thoai-may-tinh-bang/c1789>
+
+**dien-thoai-may-tinh-bang** is the category name *(category)*, **c1789** is the category code *(code)*
