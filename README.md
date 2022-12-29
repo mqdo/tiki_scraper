@@ -90,6 +90,8 @@ Response:
 ]
 ```
 
+Example of search queries:  q=%C4%91i%E1%BB%87n+tho%E1%BA%A1i&sort=top_seller&stock_location=VN034&rating=4&price=2500000%2C6500000&brand=18802
+
 ## GET /categories
 
 Purpose: Get categories list
